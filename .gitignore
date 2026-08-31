@@ -105,3 +105,15 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.idea/.idea.Modul-27-28n/.idea/vcs.xml
+.idea/.idea.Modul-27-28n/.idea/indexLayout.xml
+.idea/.idea.Modul-27-28n/.idea/encodings.xml
+Packages/manifest.json
+Packages/packages-lock.json
+Packages/manifest.json
+Packages/packages-lock.json
+Packages/manifest.json
+Packages/packages-lock.json
