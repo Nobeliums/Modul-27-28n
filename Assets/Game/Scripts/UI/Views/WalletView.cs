@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WalletView  : MonoBehaviour
+public class WalletView  : BaseView
 {
 	[SerializeField] private TMP_Text _walletValue;
 	[SerializeField] private Image _walletImage;

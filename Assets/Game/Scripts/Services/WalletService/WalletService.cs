@@ -18,7 +18,7 @@ public class WalletService : MonoBehaviour
 		{
 			if (_wallets.Find(x => x.Type == walletConfig.Type) != null)
 			{
-				Debug.LogWarning($"Wallet {walletConfig.Type} is already initialized");
+				Debug.LogWarning($"Wallet {walletConfig.Type} is already exist");
 				continue;
 			}
 
@@ -42,7 +42,7 @@ public class WalletService : MonoBehaviour
 			return true;
 		}
 		
-		Debug.LogWarning($"Wallet {walletType} is already initialized");
+		Debug.LogWarning($"Wallet {walletType} is not exist");
 		return false;
 	}
 
@@ -55,7 +55,7 @@ public class WalletService : MonoBehaviour
 			return true;
 		}
 		
-		Debug.LogWarning($"Wallet {walletType} is already initialized");
+		Debug.LogWarning($"Wallet {walletType} is not exist");
 		return false;
 	}
 
@@ -63,6 +63,14 @@ public class WalletService : MonoBehaviour
 	{
 		if (TryGetWalletBy(walletType, out Wallet wallet))
 			wallet.AddValue(value);
+		else
+			Debug.LogWarning($"Wallet {walletType} is not exist");
+	}
+
+	public void RemoveValueFrom(WalletType walletType, int value)
+	{
+		if (TryGetWalletBy(walletType, out Wallet wallet))
+			wallet.RemoveValue(value);
 		else
 			Debug.LogWarning($"Wallet {walletType} is not exist");
 	}
