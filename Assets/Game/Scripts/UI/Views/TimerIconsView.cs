@@ -26,9 +26,13 @@ public class TimerIconsView : TimerView
 	protected override void OnValueChanged(int time)
 	{
 		base.OnValueChanged(time);
+
+		if (_icons.Count > 0)
+		{
+			GameObject icon = _icons.Dequeue();
+
+			Destroy(icon);
+		}
 		
-		GameObject icon =  _icons.Dequeue();
-		
-		Destroy(icon);
 	}
 }

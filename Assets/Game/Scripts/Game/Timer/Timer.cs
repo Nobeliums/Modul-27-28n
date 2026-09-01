@@ -5,6 +5,8 @@ using UnityEngine;
 public class Timer : IValueChangeNotifier
 {
 	public event Action<int> ValueChanged;
+	public event Action TimerFinished;
+	public event Action TimerStopped;
 
 	private int _time;
 	private int _timeLeft;
@@ -24,7 +26,7 @@ public class Timer : IValueChangeNotifier
 	public void StartTimer()
 	{
 		if (_process == null)
-			_coroutineStarter.StartCoroutine(ProcessTimer());
+			_process = _coroutineStarter.StartCoroutine(ProcessTimer());
 		else
 			Debug.LogError("Timer is already running");
 	}
@@ -33,6 +35,11 @@ public class Timer : IValueChangeNotifier
 	{
 		if (_process == null)
 			return;
+
+		_timeLeft = 0;
+
+		ValueChanged?.Invoke(_timeLeft);
+		TimerStopped?.Invoke();
 		
 		_coroutineStarter.StopCoroutine(_process);
 	}
@@ -48,7 +55,8 @@ public class Timer : IValueChangeNotifier
 
 			if (_timeLeft <= 0)
 			{
-				yield break;
+				TimerFinished?.Invoke();
+				StopTimer();
 			}
 		}
 	}

@@ -13,10 +13,13 @@ public class EventsExample : MonoBehaviour
 	private const KeyCode StartAllTimersKey = KeyCode.S;
 	private const KeyCode StopAllTimersKey = KeyCode.D;
 	private const KeyCode SwitchTimerViewTypeKey = KeyCode.F;
+
+	public const KeyCode SpawnEnemyKey = KeyCode.G; 
 	
 	[SerializeField] private WalletService _walletService;
 	[SerializeField] private TimerService _timerService;
 	[SerializeField] private UiService _uiService;
+	[SerializeField] private EnemySpawner _enemySpawner;
 
 	[SerializeField] private int _minRandomTime;
 	[SerializeField] private int _maxRandomTime;
@@ -50,6 +53,9 @@ public class EventsExample : MonoBehaviour
 		
 		if (Input.GetKeyDown(SwitchTimerViewTypeKey))
 			_uiService.SwitchTimerViewType();
+		
+		if (Input.GetKeyDown(SpawnEnemyKey))
+			_enemySpawner.SpawnNewEnemy();
 
 	}
 }

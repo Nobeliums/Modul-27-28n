@@ -9,6 +9,8 @@ public class ApplicationStarter : MonoBehaviour
 	[SerializeField] private WalletService _walletService;
 	[SerializeField] private UiService _uiService;
 	[SerializeField] private TimerService _timerService;
+	[SerializeField] private DestroyerService _destroyebleContainer;
+	[SerializeField] private EnemySpawner _enemySpawner;
 
 	private void Awake()
 	{
@@ -19,7 +21,9 @@ public class ApplicationStarter : MonoBehaviour
 	{
 		_walletService.Initialize();
 		_timerService.Initialize();
+		_destroyebleContainer.Initialize();
 		_uiService.Initialize();
+		_enemySpawner.Initialize();
 		
 		GameStarted?.Invoke();
 	}

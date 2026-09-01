@@ -13,6 +13,16 @@ public class TimerService : MonoBehaviour
 		_timers = new List<Timer>();
 	}
 
+	public void StartTimer(Timer timer)
+	{
+		timer.StartTimer();
+	}
+
+	public void StopTimer(Timer timer)
+	{
+		timer.StopTimer();
+	}
+
 	public void StartAllTimers()
 	{
 		foreach (Timer timer in _timers)
@@ -23,9 +33,10 @@ public class TimerService : MonoBehaviour
 
 	public void StopAllTimers()
 	{
-		foreach (Timer timer in _timers)
+		for (int i = _timers.Count - 1; i >= 0; i--)
 		{
-			timer.StopTimer();
+			_timers[i].StopTimer();
+			_timers.RemoveAt(i);
 		}
 	}
 
