@@ -19,7 +19,7 @@ public class WalletView  : BaseView
 
 		if (_walletService.TryAddListenerTo(_walletConfig.Type, OnValueChanged) == false)
 		{
-			Debug.LogError($"Type {_walletConfig.Type} was already created");
+			Debug.LogError($"Type {_walletConfig.Type} was already not created");
 			
 			Destroy(gameObject);
 		}

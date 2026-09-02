@@ -1,4 +1,4 @@
-public interface IDestroyeble
+public interface IDestroyable
 {
 	public bool IsDestroyed { get; }
 

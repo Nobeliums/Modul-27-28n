@@ -64,7 +64,7 @@ public class WalletService : MonoBehaviour
 		if (TryGetWalletBy(walletType, out Wallet wallet))
 			wallet.AddValue(value);
 		else
-			Debug.LogWarning($"Wallet {walletType} is not exist");
+			Debug.LogError($"Wallet {walletType} is not exist");
 	}
 
 	public void RemoveValueFrom(WalletType walletType, int value)
@@ -72,6 +72,6 @@ public class WalletService : MonoBehaviour
 		if (TryGetWalletBy(walletType, out Wallet wallet))
 			wallet.RemoveValue(value);
 		else
-			Debug.LogWarning($"Wallet {walletType} is not exist");
+			Debug.LogError($"Wallet {walletType} is not exist");
 	}
 }

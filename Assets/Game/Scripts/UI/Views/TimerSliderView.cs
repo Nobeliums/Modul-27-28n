@@ -9,7 +9,7 @@ public class TimerSliderView : TimerView
 	{
 		base.Initialize(timer);
 
-		_slider.value = _timer.Time / _timer.Time;
+		_slider.value = _timer.Time;
 	}
 
 	protected override void OnValueChanged(int value)

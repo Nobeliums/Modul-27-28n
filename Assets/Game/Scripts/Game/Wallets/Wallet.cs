@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class Wallet : IValueChangeNotifier
+public class Wallet
 {
 	public event Action<int> ValueChanged;
 

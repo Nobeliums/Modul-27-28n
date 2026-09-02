@@ -47,9 +47,6 @@ public class UiService : MonoBehaviour
 				_currentTimerView = _timerSliderViewPrefab;
 				break;
 		}
-		
-		Debug.Log(_timerViewType);
-		Debug.Log(_currentTimerView.name);
 	}
 
 	private void OnDestroy()

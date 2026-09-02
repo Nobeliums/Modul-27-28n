@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDestroyeble
+public class Enemy : MonoBehaviour, IDestroyable
 {
 	public event Action<Enemy> Destroyed;
 

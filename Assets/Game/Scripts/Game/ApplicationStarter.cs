@@ -9,7 +9,7 @@ public class ApplicationStarter : MonoBehaviour
 	[SerializeField] private WalletService _walletService;
 	[SerializeField] private UiService _uiService;
 	[SerializeField] private TimerService _timerService;
-	[SerializeField] private DestroyerService _destroyebleContainer;
+	[SerializeField] private DestroyerService _destroyableContainer;
 	[SerializeField] private EnemySpawner _enemySpawner;
 
 	private void Awake()
@@ -17,11 +17,11 @@ public class ApplicationStarter : MonoBehaviour
 		StartGame();
 	}
 
-	public void StartGame()
+	private void StartGame()
 	{
 		_walletService.Initialize();
 		_timerService.Initialize();
-		_destroyebleContainer.Initialize();
+		_destroyableContainer.Initialize();
 		_uiService.Initialize();
 		_enemySpawner.Initialize();
 		

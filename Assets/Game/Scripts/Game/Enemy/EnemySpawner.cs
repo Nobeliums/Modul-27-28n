@@ -10,9 +10,10 @@ public class EnemySpawner : MonoBehaviour
 	[SerializeField] private DestroyerService _destroyeblesContainer;
 
 	[SerializeField] private List<Transform> _spawnPoint;
-	[SerializeField] private List<ConditionType> _conditions;
+	[SerializeField] private List<DieConditionType> _conditions;
 
-	[SerializeField] private int _maxDestroyebleInContainer;
+	[SerializeField] private int _maxEnemyCount;
+	[SerializeField] private int _aliveTime;
 	
 	private List<Enemy> _spawnedEnemies;
 
@@ -21,7 +22,40 @@ public class EnemySpawner : MonoBehaviour
 		_spawnedEnemies = new List<Enemy>();
 	}
 
-	public void SpawnNewEnemy()
+	public void SpawnEnemyWithRandomConditions()
+	{
+		Enemy spawnedEnemy = CreateEnemy();
+
+		int conditionsCount = UnityEngine.Random.Range(0, _conditions.Count);
+		
+		List<DieConditionType> currentPossibleConditions = new  List<DieConditionType>(_conditions);
+
+		for (int i = 0; i <= conditionsCount; i++)
+		{
+			int randomIndex = UnityEngine.Random.Range(0, currentPossibleConditions.Count);
+			DieConditionType dieConditionType = currentPossibleConditions[randomIndex];
+
+			Func<bool> condition = GetConditionBy(dieConditionType, spawnedEnemy);
+
+			currentPossibleConditions.RemoveAt(randomIndex);
+
+			if (condition == null)
+				continue;
+
+			_destroyeblesContainer.Registry(spawnedEnemy, condition);
+		}
+	}
+
+	public void SpawnEnemyWith(DieConditionType conditionType)
+	{
+		Enemy spawnedEnemy = CreateEnemy();
+		
+		Func<bool> condition = GetConditionBy(conditionType, spawnedEnemy);
+		
+		_destroyeblesContainer.Registry(spawnedEnemy, condition);
+	}
+
+	private Enemy CreateEnemy()
 	{
 		int randomSpawnIndex = UnityEngine.Random.Range(0, _spawnPoint.Count);
 
@@ -30,37 +64,18 @@ public class EnemySpawner : MonoBehaviour
 
 		_spawnedEnemies.Add(spawnedEnemy);
 
-		int conditionsCount = UnityEngine.Random.Range(1, _conditions.Count + 1);
-		
-		List<ConditionType> possibleConditions = new  List<ConditionType>(_conditions);
-
-		for (int i = conditionsCount; i > 0; i--)
-		{
-			int randomIndex = UnityEngine.Random.Range(0, possibleConditions.Count);
-			ConditionType conditionType = possibleConditions[randomIndex];
-
-			Func<bool> condition = GetConditionBy(conditionType, spawnedEnemy);
-
-			possibleConditions.RemoveAt(randomIndex);
-
-			if (condition == null)
-				continue;
-
-			_destroyeblesContainer.Registry(spawnedEnemy, condition);
-			
-			Debug.Log($"Зарегистрирован {conditionType} у {spawnedEnemy.name}");
-		}
+		return spawnedEnemy;
 	}
 
-	private Func<bool> GetConditionBy(ConditionType type, Enemy enemy)
+	private Func<bool> GetConditionBy(DieConditionType type, Enemy enemy)
 	{
 		switch (type)
 		{
-			case  ConditionType.Dead:
+			case  DieConditionType.Dead:
 				return () => enemy.IsDead;
-			case  ConditionType.TimerFinished:
+			case  DieConditionType.TimerFinished:
 				return GetTimerCondition(enemy);
-			case  ConditionType.ContainerOverflow:
+			case  DieConditionType.CountOverflow:
 				return GetContainerOverflowCondition();
 			default:
 				Debug.LogError("Unknown condition type: " + type + $" In {nameof(GetConditionBy)}");
@@ -70,12 +85,12 @@ public class EnemySpawner : MonoBehaviour
 
 	private Func<bool> GetContainerOverflowCondition()
 	{
-		return () => _spawnedEnemies.Count > _maxDestroyebleInContainer;
+		return () => _spawnedEnemies.Count > _maxEnemyCount;
 	}
 	
 	private Func<bool> GetTimerCondition(Enemy enemy)
 	{
-		Timer timer = _timerService.CreateTimer(10);
+		Timer timer = _timerService.CreateTimer(_aliveTime);
 		
 		TimerWatcher watcher = new TimerWatcher(timer);
 		_timerService.StartTimer(timer);
@@ -89,12 +104,5 @@ public class EnemySpawner : MonoBehaviour
 	{
 		_spawnedEnemies.Remove(enemy);
 		enemy.Destroyed -= OnEnemyDestroyed;
-	}
-
-	private enum ConditionType
-	{
-		Dead,
-		TimerFinished,
-		ContainerOverflow
 	}
 }

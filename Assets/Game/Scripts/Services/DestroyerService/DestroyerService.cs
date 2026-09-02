@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class DestroyerService : MonoBehaviour
 {
-	private List<DestroyContiditonItem> _destroyeblesContainer;
+	private List<DestroyableByConditionItem> _destroyableContainer;
 
 	public void Initialize()
 	{
-		_destroyeblesContainer = new List<DestroyContiditonItem>();
+		_destroyableContainer = new List<DestroyableByConditionItem>();
 	}
 
-	public void Registry(IDestroyeble destroyeble, Func<bool> condition)
+	public void Registry(IDestroyable destroyable, Func<bool> condition)
 	{
-		_destroyeblesContainer.Add(new DestroyContiditonItem(destroyeble, condition));
+		_destroyableContainer.Add(new DestroyableByConditionItem(destroyable, condition));
 	}
 
 	private void Update()
@@ -23,30 +23,30 @@ public class DestroyerService : MonoBehaviour
 
 	private void CheckDestroyConditions()
 	{
-		for (int i = _destroyeblesContainer.Count - 1; i >= 0; i--)
+		for (int i = _destroyableContainer.Count - 1; i >= 0; i--)
 		{
-			if (_destroyeblesContainer[i].Destroyeble == null || _destroyeblesContainer[i].Destroyeble.IsDestroyed)
+			if (_destroyableContainer[i].Destroyable == null || _destroyableContainer[i].Destroyable.IsDestroyed)
 			{
-				_destroyeblesContainer.RemoveAt(i);
+				_destroyableContainer.RemoveAt(i);
 				continue;
 			}
 			
-			if (_destroyeblesContainer[i].Condition())
+			if (_destroyableContainer[i].Condition?.Invoke() ?? false)
 			{
-				_destroyeblesContainer[i].Destroyeble.Destroy();
-				_destroyeblesContainer.RemoveAt(i);
+				_destroyableContainer[i].Destroyable.Destroy();
+				_destroyableContainer.RemoveAt(i);
 			}
 		}
 	}
 
-	internal class DestroyContiditonItem
+	private class DestroyableByConditionItem
 	{
-		public IDestroyeble Destroyeble;
+		public IDestroyable Destroyable;
 		public Func<bool> Condition;
 
-		public DestroyContiditonItem(IDestroyeble destroyeble, Func<bool> condition)
+		public DestroyableByConditionItem(IDestroyable destroyable, Func<bool> condition)
 		{
-			Destroyeble = destroyeble;
+			Destroyable = destroyable;
 			Condition = condition;
 		}
 	}

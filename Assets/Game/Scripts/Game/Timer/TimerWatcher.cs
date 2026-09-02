@@ -12,7 +12,7 @@ public class TimerWatcher
 		_timer.TimerStopped += TimerStopped;
 	}
 	
-	public void OnTimerFinished() => _isTimerFinished = true;
+	private void OnTimerFinished() => _isTimerFinished = true;
 
 	public bool IsTimerFinished()
 	{

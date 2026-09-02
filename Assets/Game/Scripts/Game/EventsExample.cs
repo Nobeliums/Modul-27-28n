@@ -14,7 +14,10 @@ public class EventsExample : MonoBehaviour
 	private const KeyCode StopAllTimersKey = KeyCode.D;
 	private const KeyCode SwitchTimerViewTypeKey = KeyCode.F;
 
-	public const KeyCode SpawnEnemyKey = KeyCode.G; 
+	private const KeyCode SpawnEnemyWithRandomDieConditionKey = KeyCode.Z; 
+	private const KeyCode SpawnEnemyWithIsDeadConditionKey = KeyCode.X;
+	private const KeyCode SpawnEnemyWithTimerFinischedConditionKey = KeyCode.C;
+	private const KeyCode SpawnEnemyWithCountOverflowConditionKey =  KeyCode.V;
 	
 	[SerializeField] private WalletService _walletService;
 	[SerializeField] private TimerService _timerService;
@@ -37,8 +40,10 @@ public class EventsExample : MonoBehaviour
 		
 		if (Input.GetKeyDown(RemoveCoinKey))
 			_walletService.RemoveValueFrom(WalletType.Coin, 1);
+
 		if (Input.GetKeyDown(RemoveDiamondKey))
 			_walletService.RemoveValueFrom(WalletType.Diamond, 1);
+
 		if (Input.GetKeyDown(RemoveEnergyKey))
 			_walletService.RemoveValueFrom(WalletType.Energy, 1);
 
@@ -54,8 +59,17 @@ public class EventsExample : MonoBehaviour
 		if (Input.GetKeyDown(SwitchTimerViewTypeKey))
 			_uiService.SwitchTimerViewType();
 		
-		if (Input.GetKeyDown(SpawnEnemyKey))
-			_enemySpawner.SpawnNewEnemy();
+		if (Input.GetKeyDown(SpawnEnemyWithRandomDieConditionKey))
+			_enemySpawner.SpawnEnemyWithRandomConditions();
+		
+		if (Input.GetKeyDown(SpawnEnemyWithIsDeadConditionKey))
+			_enemySpawner.SpawnEnemyWith(DieConditionType.Dead);
+		
+		if (Input.GetKeyDown(SpawnEnemyWithTimerFinischedConditionKey))
+			_enemySpawner.SpawnEnemyWith(DieConditionType.TimerFinished);
+		
+		if (Input.GetKeyDown(SpawnEnemyWithCountOverflowConditionKey))
+			_enemySpawner.SpawnEnemyWith(DieConditionType.CountOverflow);
 
 	}
 }

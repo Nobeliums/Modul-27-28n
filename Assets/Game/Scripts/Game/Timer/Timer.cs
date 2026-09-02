@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Timer : IValueChangeNotifier
+public class Timer
 {
 	public event Action<int> ValueChanged;
 	public event Action TimerFinished;
@@ -28,7 +28,7 @@ public class Timer : IValueChangeNotifier
 		if (_process == null)
 			_process = _coroutineStarter.StartCoroutine(ProcessTimer());
 		else
-			Debug.LogError("Timer is already running");
+			Debug.LogWarning("Timer is already running");
 	}
 
 	public void StopTimer()
@@ -51,13 +51,14 @@ public class Timer : IValueChangeNotifier
 			yield return new WaitForSeconds(1f);
 
 			_timeLeft--;
-			ValueChanged?.Invoke(_timeLeft);
 
 			if (_timeLeft <= 0)
 			{
 				TimerFinished?.Invoke();
 				StopTimer();
 			}
+
+			ValueChanged?.Invoke(_timeLeft);
 		}
 	}
 }
