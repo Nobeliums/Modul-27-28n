@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-[Serializable]
 public class Wallet
 {
 	public event Action<int> ValueChanged;
