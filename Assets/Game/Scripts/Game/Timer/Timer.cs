@@ -10,8 +10,6 @@ public class Timer
 
 	private int _time;
 	private int _timeLeft;
-	
-	public int Time => _time;
 
 	private MonoBehaviour _coroutineStarter;
 	private Coroutine _process;
@@ -22,6 +20,8 @@ public class Timer
 		_timeLeft = time;
 		_coroutineStarter = coroutineStarter;
 	}
+
+	public int Time => _time;
 
 	public void StartTimer()
 	{
