@@ -44,7 +44,7 @@ public class Timer
 		_coroutineStarter.StopCoroutine(_process);
 	}
 
-	public IEnumerator ProcessTimer()
+	private IEnumerator ProcessTimer()
 	{
 		while (true)
 		{
