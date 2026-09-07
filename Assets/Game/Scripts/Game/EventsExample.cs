@@ -13,16 +13,16 @@ public class EventsExample : MonoBehaviour
 	private const KeyCode StartAllTimersKey = KeyCode.S;
 	private const KeyCode StopAllTimersKey = KeyCode.D;
 	private const KeyCode SwitchTimerViewTypeKey = KeyCode.F;
-
-	private const KeyCode SpawnEnemyWithRandomDieConditionKey = KeyCode.Z; 
-	private const KeyCode SpawnEnemyWithIsDeadConditionKey = KeyCode.X;
-	private const KeyCode SpawnEnemyWithTimerFinischedConditionKey = KeyCode.C;
-	private const KeyCode SpawnEnemyWithCountOverflowConditionKey =  KeyCode.V;
+	
+	private const KeyCode SpawnDragonEnemyWithRandomConfigKey = KeyCode.Z;
+	private const KeyCode SpawnOrkEnemyWithRandomConfigKey = KeyCode.X;
+	private const KeyCode SpawnElfEnemyWithRandomConfigKey =  KeyCode.C;
 	
 	[SerializeField] private WalletService _walletService;
 	[SerializeField] private TimerService _timerService;
 	[SerializeField] private UiService _uiService;
 	[SerializeField] private EnemySpawner _enemySpawner;
+	[SerializeField] private ConfigService _configService;
 
 	[SerializeField] private int _minRandomTime;
 	[SerializeField] private int _maxRandomTime;
@@ -58,18 +58,24 @@ public class EventsExample : MonoBehaviour
 		
 		if (Input.GetKeyDown(SwitchTimerViewTypeKey))
 			_uiService.SwitchTimerViewType();
-		
-		if (Input.GetKeyDown(SpawnEnemyWithRandomDieConditionKey))
-			_enemySpawner.SpawnEnemyWithRandomConditions();
-		
-		if (Input.GetKeyDown(SpawnEnemyWithIsDeadConditionKey))
-			_enemySpawner.SpawnEnemyWith(DieConditionType.Dead);
-		
-		if (Input.GetKeyDown(SpawnEnemyWithTimerFinischedConditionKey))
-			_enemySpawner.SpawnEnemyWith(DieConditionType.TimerFinished);
-		
-		if (Input.GetKeyDown(SpawnEnemyWithCountOverflowConditionKey))
-			_enemySpawner.SpawnEnemyWith(DieConditionType.CountOverflow);
+
+		if (Input.GetKeyDown(SpawnDragonEnemyWithRandomConfigKey))
+		{
+			BaseEnemyConfig config = _configService.GetRandomDragonEnemyConfig();
+			_enemySpawner.SpawnEnemyWith(DieConditionType.Dead, config);
+		}
+
+		if (Input.GetKeyDown(SpawnOrkEnemyWithRandomConfigKey))
+		{
+			BaseEnemyConfig config = _configService.GetRandomOrkEnemyConfig();
+			_enemySpawner.SpawnEnemyWith(DieConditionType.Dead, config);
+		}
+
+		if (Input.GetKeyDown(SpawnElfEnemyWithRandomConfigKey))
+		{
+			BaseEnemyConfig config = _configService.GetRandomElfEnemyConfig();
+			_enemySpawner.SpawnEnemyWith(DieConditionType.Dead,  config);
+		}
 
 	}
 }

@@ -37,7 +37,7 @@ public class WalletService : MonoBehaviour
 	{
 		if (TryGetWalletBy(walletType, out Wallet wallet))
 		{
-			wallet.ValueChanged += callback;
+			wallet.Value.ValueChanged += callback;
 			
 			return true;
 		}
@@ -50,7 +50,7 @@ public class WalletService : MonoBehaviour
 	{
 		if (TryGetWalletBy(walletType, out Wallet wallet))
 		{
-			wallet.ValueChanged -= callback;
+			wallet.Value.ValueChanged -= callback;
 			
 			return true;
 		}

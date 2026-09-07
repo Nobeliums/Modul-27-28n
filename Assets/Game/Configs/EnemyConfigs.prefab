@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4570402073403379905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2375142578565036351}
+  - component: {fileID: 242465521057320297}
+  m_Layer: 0
+  m_Name: EnemyConfigs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2375142578565036351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570402073403379905}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &242465521057320297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570402073403379905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64dc2b7b426448094ac3474d31ce892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _orkEnemies:
+  - _startHealth: 10
+    _sprite: {fileID: -470427567, guid: 405abb93f25d62d4abe7fb0356305ade, type: 3}
+    _enemyPrefab: {fileID: -3716908629564911880, guid: f43e2fcd14102bd44a92d72d48ed8e8d, type: 3}
+    _startForce: 10
+    _startRage: 10
+  - _startHealth: 5
+    _sprite: {fileID: -470427567, guid: 405abb93f25d62d4abe7fb0356305ade, type: 3}
+    _enemyPrefab: {fileID: -3716908629564911880, guid: f43e2fcd14102bd44a92d72d48ed8e8d, type: 3}
+    _startForce: 15
+    _startRage: 15
+  - _startHealth: 1000
+    _sprite: {fileID: -470427567, guid: 405abb93f25d62d4abe7fb0356305ade, type: 3}
+    _enemyPrefab: {fileID: -3716908629564911880, guid: f43e2fcd14102bd44a92d72d48ed8e8d, type: 3}
+    _startForce: 100
+    _startRage: 100
+  _elfEnemies:
+  - _startHealth: 5
+    _sprite: {fileID: -218664088, guid: 405abb93f25d62d4abe7fb0356305ade, type: 3}
+    _enemyPrefab: {fileID: 6915843428486479885, guid: 7354bad0e421e404294ba87fa571a40a, type: 3}
+    _startMana: 15
+    _startMagic: 15
+  - _startHealth: 15
+    _sprite: {fileID: -218664088, guid: 405abb93f25d62d4abe7fb0356305ade, type: 3}
+    _enemyPrefab: {fileID: 6915843428486479885, guid: 7354bad0e421e404294ba87fa571a40a, type: 3}
+    _startMana: 30
+    _startMagic: 35
+  _dragonEnemies:
+  - _startHealth: 1000
+    _sprite: {fileID: 1875597897, guid: 405abb93f25d62d4abe7fb0356305ade, type: 3}
+    _enemyPrefab: {fileID: 7796999945622580418, guid: 38420ba36c7c2c54ba822d3e853942cf, type: 3}
+    _fireDamage: 50
+    _fireRange: 50
+  - _startHealth: 10000
+    _sprite: {fileID: 1875597897, guid: 405abb93f25d62d4abe7fb0356305ade, type: 3}
+    _enemyPrefab: {fileID: 7796999945622580418, guid: 38420ba36c7c2c54ba822d3e853942cf, type: 3}
+    _fireDamage: 150
+    _fireRange: 150

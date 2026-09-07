@@ -3,13 +3,12 @@ using System.Collections;
 using UnityEngine;
 
 public class Timer
-{
-	public event Action<int> ValueChanged;
+{ 
 	public event Action TimerFinished;
 	public event Action TimerStopped;
 
 	private int _time;
-	private int _timeLeft;
+	private ReactiveVariable<int> _timeLeft;
 	
 	public int Time => _time;
 
@@ -18,10 +17,14 @@ public class Timer
 	
 	public Timer(int time,  MonoBehaviour coroutineStarter)
 	{
+		_timeLeft = new ReactiveVariable<int>();
 		_time = time;
-		_timeLeft = time;
+		_timeLeft.Value = time;
 		_coroutineStarter = coroutineStarter;
 	}
+	
+	public IReadOnlyReactiveVariable<int> TimeLeft => _timeLeft;
+	public bool IsRunning => _process != null;
 
 	public void StartTimer()
 	{
@@ -36,9 +39,8 @@ public class Timer
 		if (_process == null)
 			return;
 
-		_timeLeft = 0;
-
-		ValueChanged?.Invoke(_timeLeft);
+		_timeLeft.Value = 0;
+		
 		TimerStopped?.Invoke();
 		
 		_coroutineStarter.StopCoroutine(_process);
@@ -50,15 +52,13 @@ public class Timer
 		{
 			yield return new WaitForSeconds(1f);
 
-			_timeLeft--;
+			_timeLeft.Value--;
 
-			if (_timeLeft <= 0)
+			if (_timeLeft.Value <= 0)
 			{
 				TimerFinished?.Invoke();
 				StopTimer();
 			}
-
-			ValueChanged?.Invoke(_timeLeft);
 		}
 	}
 }

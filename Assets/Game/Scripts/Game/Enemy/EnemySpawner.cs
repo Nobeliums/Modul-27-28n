@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-	[SerializeField] private Enemy _enemyPrefab;
-
 	[SerializeField] private TimerService _timerService;
 	[SerializeField] private DestroyerService _destroyeblesContainer;
 
@@ -22,9 +20,9 @@ public class EnemySpawner : MonoBehaviour
 		_spawnedEnemies = new List<Enemy>();
 	}
 
-	public void SpawnEnemyWithRandomConditions()
+	public void SpawnEnemyWithRandomConditions(BaseEnemyConfig config)
 	{
-		Enemy spawnedEnemy = CreateEnemy();
+		Enemy spawnedEnemy = CreateEnemy(config);
 
 		int conditionsCount = UnityEngine.Random.Range(0, _conditions.Count);
 		
@@ -46,20 +44,22 @@ public class EnemySpawner : MonoBehaviour
 		}
 	}
 
-	public void SpawnEnemyWith(DieConditionType conditionType)
+	public void SpawnEnemyWith(DieConditionType conditionType, BaseEnemyConfig config)
 	{
-		Enemy spawnedEnemy = CreateEnemy();
+		Enemy spawnedEnemy = CreateEnemy(config);
 		
 		Func<bool> condition = GetConditionBy(conditionType, spawnedEnemy);
 		
 		_destroyeblesContainer.Registry(spawnedEnemy, condition);
 	}
 
-	private Enemy CreateEnemy()
+	private Enemy CreateEnemy(BaseEnemyConfig config)
 	{
 		int randomSpawnIndex = UnityEngine.Random.Range(0, _spawnPoint.Count);
 
-		Enemy spawnedEnemy = Instantiate(_enemyPrefab, _spawnPoint[randomSpawnIndex].position, Quaternion.identity);
+		Enemy spawnedEnemy = Instantiate(config.EnemyPrefab, _spawnPoint[randomSpawnIndex].position, Quaternion.identity);
+		spawnedEnemy.Initialize(config);
+
 		spawnedEnemy.Destroyed += OnEnemyDestroyed;
 
 		_spawnedEnemies.Add(spawnedEnemy);

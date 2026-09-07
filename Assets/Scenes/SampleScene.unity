@@ -122,6 +122,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &44551098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44551100}
+  - component: {fileID: 44551099}
+  m_Layer: 0
+  m_Name: ConfigsService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &44551099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44551098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1124a659ae9da3643b164aa2070b30b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _configs: {fileID: 242465521057320297, guid: 58c2fb49d8227c148a1c10268e9411f4, type: 3}
+--- !u!4 &44551100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44551098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &118030372
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +840,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d03e4ff117422e91980d8a11fae29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 2186294767772129289, guid: a06ba368460effc49b8a51124664d838, type: 3}
   _timerService: {fileID: 323335185}
   _destroyeblesContainer: {fileID: 1546905084}
   _spawnPoint:
@@ -1044,6 +1088,7 @@ MonoBehaviour:
   _timerService: {fileID: 323335185}
   _uiService: {fileID: 1964409706}
   _enemySpawner: {fileID: 1745900192}
+  _configService: {fileID: 44551099}
   _minRandomTime: 5
   _maxRandomTime: 10
 --- !u!4 &2012676317
@@ -1216,3 +1261,4 @@ SceneRoots:
   - {fileID: 1745900193}
   - {fileID: 1546905085}
   - {fileID: 593551394}
+  - {fileID: 44551100}

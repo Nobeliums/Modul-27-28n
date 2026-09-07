@@ -15,6 +15,9 @@ public class TimerService : MonoBehaviour
 
 	public void StartTimer(Timer timer)
 	{
+		if (timer.IsRunning)
+			return;
+
 		timer.StartTimer();
 	}
 
@@ -27,6 +30,9 @@ public class TimerService : MonoBehaviour
 	{
 		foreach (Timer timer in _timers)
 		{
+			if (timer.IsRunning)
+				continue;
+			
 			timer.StartTimer();
 		}
 	}

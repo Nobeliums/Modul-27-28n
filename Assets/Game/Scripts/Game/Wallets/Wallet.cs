@@ -4,16 +4,17 @@ using UnityEngine;
 [Serializable]
 public class Wallet
 {
-	public event Action<int> ValueChanged;
-
-	public int Value { get; private set; }
+	private ReactiveVariable<int> _value;
 	public string Name { get; private set; }
 	public Sprite Icon { get; private set; }
 	public WalletType Type { get; private set; }
+	
+	public IReadOnlyReactiveVariable<int> Value => _value;
 
 	public Wallet(WalletConfig walletConfig)
 	{
-		Value = walletConfig.StartValue;
+		_value = new ReactiveVariable<int>();
+		_value.Value = walletConfig.StartValue;
 		Name = walletConfig.Name;
 		Icon = walletConfig.Sprite;
 		Type = walletConfig.Type;
@@ -21,14 +22,17 @@ public class Wallet
 
 	public void AddValue(int value)
 	{
-		Value += value;
-		ValueChanged?.Invoke(Value);
+		if (value < 0)
+			throw new ArgumentOutOfRangeException("Value cannot be negative");
+
+		_value.Value += value;
 	}
 
 	public void RemoveValue(int value)
 	{
-		Value -= value;
-		ValueChanged?.Invoke(Value);
+		if (value < 0)
+			throw new ArgumentOutOfRangeException("Value cannot be negative");
+		_value.Value -= value;
 	}
 
 }
