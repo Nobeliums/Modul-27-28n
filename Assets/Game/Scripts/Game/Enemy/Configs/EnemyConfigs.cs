@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyConfigs : MonoBehaviour
+[CreateAssetMenu(fileName = "EnemyConfig", menuName = "Game/Gameplay/Configs/EnemyConfig")]
+public class EnemyConfigs : ScriptableObject
 {
 	[SerializeField] private List<OrkEnemyConfig> _orkEnemies;
 	[SerializeField] private List<ElfEnemyConfig> _elfEnemies;
@@ -10,6 +11,4 @@ public class EnemyConfigs : MonoBehaviour
 	public IReadOnlyList<OrkEnemyConfig> OrkEnemies => _orkEnemies;
 	public IReadOnlyList<ElfEnemyConfig>  ElfEnemies => _elfEnemies;
 	public IReadOnlyList<DragonEnemyConfig>  DragonEnemies => _dragonEnemies;
-	
-	
 }

@@ -3,7 +3,7 @@ using System;
 
 public class ReactiveVariable<T> : IReadOnlyReactiveVariable<T>
 {
-	public event Action<T> ValueChanged;
+	public event Action<T> Changed;
 	
 	private T _value;
 
@@ -13,7 +13,14 @@ public class ReactiveVariable<T> : IReadOnlyReactiveVariable<T>
 		set
 		{
 			_value = value;
-			ValueChanged?.Invoke(_value);
+			Changed?.Invoke(_value);
 		}
+	}
+	
+	public  ReactiveVariable() {}
+
+	public ReactiveVariable(T startValue)
+	{
+		_value = startValue;
 	}
 }

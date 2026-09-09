@@ -7,12 +7,12 @@ public abstract class TimerView : BaseView
 	public virtual void Initialize(Timer timer)
 	{
 		_timer = timer;
-		_timer.TimeLeft.ValueChanged += OnValueChanged;
+		_timer.TimeLeft.Changed += OnValueChanged;
 	}
 
 	private void OnDestroy()
 	{
-		_timer.TimeLeft.ValueChanged -= OnValueChanged;
+		_timer.TimeLeft.Changed -= OnValueChanged;
 	}
 
 	protected virtual void OnValueChanged(int time)

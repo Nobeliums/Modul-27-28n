@@ -1,38 +1,71 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
 public class Wallet
 {
-	private ReactiveVariable<int> _value;
-	public string Name { get; private set; }
-	public Sprite Icon { get; private set; }
-	public WalletType Type { get; private set; }
+	private List<Currency> _currencies;
+	private List<CurrencyConfig> _currencyConfig;
 	
-	public IReadOnlyReactiveVariable<int> Value => _value;
+	public IReadOnlyList<Currency> Currencies => _currencies;
+	public IReadOnlyList<CurrencyConfig> CurrencyConfigs => _currencyConfig;
 
-	public Wallet(WalletConfig walletConfig)
+	public Wallet(params CurrencyConfig[] currencyConfigs)
 	{
-		_value = new ReactiveVariable<int>();
-		_value.Value = walletConfig.StartValue;
-		Name = walletConfig.Name;
-		Icon = walletConfig.Sprite;
-		Type = walletConfig.Type;
+		_currencies = new List<Currency>();
+		_currencyConfig = new List<CurrencyConfig>();
+
+		foreach (CurrencyConfig walletConfig in currencyConfigs)
+		{
+			Currency currency = new Currency(walletConfig);
+			_currencyConfig.Add(walletConfig);
+			
+			_currencies.Add(currency);
+		}
 	}
 
-	public void AddValue(int value)
-	{
-		if (value < 0)
-			throw new ArgumentOutOfRangeException("Value cannot be negative");
-
-		_value.Value += value;
-	}
-
-	public void RemoveValue(int value)
+	public void AddValueTo(CurrencyType type, int value)
 	{
 		if (value < 0)
 			throw new ArgumentOutOfRangeException("Value cannot be negative");
-		_value.Value -= value;
+		
+		if (TryGetCurrencyBy(type, out Currency currency) == false)
+			throw new ArgumentException($"{type.ToString()} is not a valid currency");
+		
+		currency.Add(value);
 	}
 
+	public void RemoveValueFrom(CurrencyType type, int value)
+	{
+		if (value < 0)
+			throw new ArgumentOutOfRangeException("Value cannot be negative");
+		
+		if (TryGetCurrencyBy(type, out Currency currency) == false)
+			throw new ArgumentException($"{type.ToString()} is not a valid currency");
+		
+		currency.Remove(value);
+	}
+
+	public IReadOnlyCurrency GetCurrencyValueBy(CurrencyType type)
+	{
+		if (TryGetCurrencyBy(type, out Currency currency))
+			return currency;
+		
+		throw new ArgumentException($"{type.ToString()} is not a valid currency");
+	}
+
+	private bool TryGetCurrencyBy(CurrencyType type, out Currency currency)
+	{
+		currency = _currencies.FirstOrDefault(c => c.Type == type);
+
+		if (currency == null)
+		{
+			Debug.LogWarning($"{type.ToString()} is not created");
+			return false;
+		}
+		
+		return true;
+	}
 }

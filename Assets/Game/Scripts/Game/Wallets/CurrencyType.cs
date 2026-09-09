@@ -1,4 +1,4 @@
-public enum WalletType
+public enum CurrencyType
 {
 	Coin,
 	Diamond,

@@ -14,7 +14,7 @@ public class ConfigService : MonoBehaviour
 	private T GetConfig<T>(IReadOnlyList<T> configs) where T : BaseEnemyConfig
 	{
 		int randomIndex = Random.Range(0, configs.Count);
-		Debug.Log(configs[randomIndex]);
+
 		return configs[randomIndex];
 	}
 }

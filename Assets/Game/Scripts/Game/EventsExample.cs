@@ -18,7 +18,8 @@ public class EventsExample : MonoBehaviour
 	private const KeyCode SpawnOrkEnemyWithRandomConfigKey = KeyCode.X;
 	private const KeyCode SpawnElfEnemyWithRandomConfigKey =  KeyCode.C;
 	
-	[SerializeField] private WalletService _walletService;
+	private Wallet _wallet;
+
 	[SerializeField] private TimerService _timerService;
 	[SerializeField] private UiService _uiService;
 	[SerializeField] private EnemySpawner _enemySpawner;
@@ -27,25 +28,30 @@ public class EventsExample : MonoBehaviour
 	[SerializeField] private int _minRandomTime;
 	[SerializeField] private int _maxRandomTime;
 
+	public void Initialize(Wallet wallet)
+	{
+		_wallet = wallet;
+	}
+
 	private void Update()
 	{
 		if (Input.GetKeyDown(AddCoinKey))
-			_walletService.AddValueTo(WalletType.Coin, 1);
+			_wallet.AddValueTo(CurrencyType.Coin, 1);
 		
 		if (Input.GetKeyDown(AddDiamondKey))
-			_walletService.AddValueTo(WalletType.Diamond, 1);
+			_wallet.AddValueTo(CurrencyType.Diamond, 1);
 		
 		if (Input.GetKeyDown(AddEnergyKey))
-			_walletService.AddValueTo(WalletType.Energy, 1);
+			_wallet.AddValueTo(CurrencyType.Energy, 1);
 		
 		if (Input.GetKeyDown(RemoveCoinKey))
-			_walletService.RemoveValueFrom(WalletType.Coin, 1);
+			_wallet.RemoveValueFrom(CurrencyType.Coin, 1);
 
 		if (Input.GetKeyDown(RemoveDiamondKey))
-			_walletService.RemoveValueFrom(WalletType.Diamond, 1);
+			_wallet.RemoveValueFrom(CurrencyType.Diamond, 1);
 
 		if (Input.GetKeyDown(RemoveEnergyKey))
-			_walletService.RemoveValueFrom(WalletType.Energy, 1);
+			_wallet.RemoveValueFrom(CurrencyType.Energy, 1);
 
 		if (Input.GetKeyDown(CreateNewTimerKey))
 			_timerService.CreateTimer(Random.Range(_minRandomTime, _maxRandomTime));

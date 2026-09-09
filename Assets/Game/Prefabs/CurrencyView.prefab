@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 1172117545977090559}
   - component: {fileID: 2525912600453859724}
   m_Layer: 5
-  m_Name: WalletView
+  m_Name: CurrencyView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
