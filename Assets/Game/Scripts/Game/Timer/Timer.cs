@@ -26,6 +26,8 @@ public class Timer
 	public IReadOnlyReactiveVariable<int> TimeLeft => _timeLeft;
 	public bool IsRunning => _process != null;
 
+	public int Time => _time;
+
 	public void StartTimer()
 	{
 		if (_process == null)
