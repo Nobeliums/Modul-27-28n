@@ -122,6 +122,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &44551098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44551100}
+  - component: {fileID: 44551099}
+  m_Layer: 0
+  m_Name: ConfigsService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &44551099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44551098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1124a659ae9da3643b164aa2070b30b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _configs: {fileID: 11400000, guid: 92a9fec71b45743428d090d79664d6eb, type: 2}
+--- !u!4 &44551100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44551098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &118030372
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,54 +732,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1672364688
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1672364690}
-  - component: {fileID: 1672364689}
-  m_Layer: 0
-  m_Name: WalletService
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1672364689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672364688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 276327e80d804d67a7e62effb567504b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _walletConfigs:
-  - {fileID: 8284558378269216934, guid: 4406f71f0065e95479bc66d8f32d7444, type: 3}
-  - {fileID: 8284558378269216934, guid: 625c9ffe3db5c3b4280c6cdfa0a912fc, type: 3}
-  - {fileID: 8284558378269216934, guid: 677c42a601b817f41897c6d169191b64, type: 3}
---- !u!4 &1672364690
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672364688}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1020.67035, y: 668.9365, z: 168.01181}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1685874530
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +792,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d03e4ff117422e91980d8a11fae29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 2186294767772129289, guid: a06ba368460effc49b8a51124664d838, type: 3}
   _timerService: {fileID: 323335185}
   _destroyeblesContainer: {fileID: 1546905084}
   _spawnPoint:
@@ -1005,10 +1001,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walletGrid: {fileID: 118030373}
   _timerGrid: {fileID: 2038932450}
-  _walletViewPrefab: {fileID: 2525912600453859724, guid: 394dc02c4c1bb12478d08acee245f7b0, type: 3}
+  currencyValueViewPrefab: {fileID: 2525912600453859724, guid: 394dc02c4c1bb12478d08acee245f7b0, type: 3}
   _timerSliderViewPrefab: {fileID: 7452025860969915368, guid: 5f107b0fb71640f4abcb9a73e01c5e9d, type: 3}
   _timerIconsViewPrefab: {fileID: 3966142208667960130, guid: df6ee451fb24a1f48802dd617eac9e61, type: 3}
-  _walletService: {fileID: 1672364689}
   _timerService: {fileID: 323335185}
   _timerViewType: 0
 --- !u!1 &2012676315
@@ -1040,10 +1035,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0604c832b57b4335b0c467b2469176b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walletService: {fileID: 1672364689}
   _timerService: {fileID: 323335185}
   _uiService: {fileID: 1964409706}
   _enemySpawner: {fileID: 1745900192}
+  _configService: {fileID: 44551099}
   _minRandomTime: 5
   _maxRandomTime: 10
 --- !u!4 &2012676317
@@ -1150,11 +1145,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0466deea2f495a49865e7d2248a2d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walletService: {fileID: 1672364689}
+  _currencyConfigs:
+  - {fileID: 8284558378269216934, guid: 4406f71f0065e95479bc66d8f32d7444, type: 3}
+  - {fileID: 8284558378269216934, guid: 625c9ffe3db5c3b4280c6cdfa0a912fc, type: 3}
+  - {fileID: 8284558378269216934, guid: 677c42a601b817f41897c6d169191b64, type: 3}
   _uiService: {fileID: 1964409706}
   _timerService: {fileID: 323335185}
   _destroyableContainer: {fileID: 1546905084}
   _enemySpawner: {fileID: 1745900192}
+  _eventsExample: {fileID: 2012676316}
 --- !u!4 &2131335110
 Transform:
   m_ObjectHideFlags: 0
@@ -1209,10 +1208,10 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 1964409705}
   - {fileID: 1261493404}
-  - {fileID: 1672364690}
   - {fileID: 2131335110}
   - {fileID: 323335186}
   - {fileID: 2012676317}
   - {fileID: 1745900193}
   - {fileID: 1546905085}
   - {fileID: 593551394}
+  - {fileID: 44551100}

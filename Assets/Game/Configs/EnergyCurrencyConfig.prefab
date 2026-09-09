@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5653806454704637679}
   - component: {fileID: 8284558378269216934}
   m_Layer: 0
-  m_Name: CoinWalletConfig
+  m_Name: EnergyCurrencyConfig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,4 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Coin
   _startValue: 0
-  _sprite: {fileID: 21300042, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  _sprite: {fileID: 21300052, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  _type: 2
