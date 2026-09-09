@@ -44,9 +44,11 @@ public class EnemySpawner : MonoBehaviour
 		}
 	}
 
-	public void SpawnEnemyWith(DieConditionType conditionType, BaseEnemyConfig config)
+	public void SpawnEnemyWith(DieConditionType conditionType, BaseEnemyConfig config, EnemyViewConfig viewConfig)
 	{
 		Enemy spawnedEnemy = CreateEnemy(config);
+
+		spawnedEnemy.GetComponentInChildren<EnemyView>().SetSprite(viewConfig.View);
 		
 		Func<bool> condition = GetConditionBy(conditionType, spawnedEnemy);
 		
