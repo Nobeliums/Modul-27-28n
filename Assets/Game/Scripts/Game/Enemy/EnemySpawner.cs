@@ -95,9 +95,9 @@ public class EnemySpawner : MonoBehaviour
 		Timer timer = _timerService.CreateTimer(_aliveTime);
 		
 		TimerWatcher watcher = new TimerWatcher(timer);
-		_timerService.StartTimer(timer);
+		timer.StartTimer();
 		
-		enemy.Destroyed += (enemy) => _timerService.StopTimer(timer);
+		enemy.Destroyed += (enemy) => timer.StopTimer();
 		
 		return watcher.IsTimerFinished;
 	}
