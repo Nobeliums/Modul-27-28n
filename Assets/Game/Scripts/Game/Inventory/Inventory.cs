@@ -29,7 +29,7 @@ public class Inventory
         return true;
     }
 
-    public bool TryRemoveItemsBy(string name, int count, out List<Item> items)
+    public bool TryGetItemsBy(string name, int count, out List<Item> items)
     {
         List<Item> tempItems = new List<Item>(count);
         

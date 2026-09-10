@@ -50,3 +50,9 @@ MonoBehaviour:
     _enemyPrefab: {fileID: 7796999945622580418, guid: 38420ba36c7c2c54ba822d3e853942cf, type: 3}
     _fireDamage: 150
     _fireRange: 200
+  _orkEnemyViewConfig:
+    View: {fileID: -470427567, guid: 405abb93f25d62d4abe7fb0356305ade, type: 3}
+  _elfEnemyViewConfig:
+    View: {fileID: -218664088, guid: 405abb93f25d62d4abe7fb0356305ade, type: 3}
+  _dragonEnemyViewConfig:
+    View: {fileID: 1875597897, guid: 405abb93f25d62d4abe7fb0356305ade, type: 3}

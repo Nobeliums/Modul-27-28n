@@ -9,9 +9,6 @@ public class Timer
 
 	private int _time;
 	private ReactiveVariable<int> _timeLeft;
-	
-	public int Time => _time;
-
 	private MonoBehaviour _coroutineStarter;
 	private Coroutine _process;
 	
@@ -30,7 +27,7 @@ public class Timer
 
 	public void StartTimer()
 	{
-		if (_process == null)
+		if (IsRunning == false)
 			_process = _coroutineStarter.StartCoroutine(ProcessTimer());
 		else
 			Debug.LogWarning("Timer is already running");
@@ -38,7 +35,7 @@ public class Timer
 
 	public void StopTimer()
 	{
-		if (_process == null)
+		if (IsRunning)
 			return;
 
 		_timeLeft.Value = 0;

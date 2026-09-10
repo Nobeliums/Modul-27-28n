@@ -44,9 +44,11 @@ public class EnemySpawner : MonoBehaviour
 		}
 	}
 
-	public void SpawnEnemyWith(DieConditionType conditionType, BaseEnemyConfig config)
+	public void SpawnEnemyWith(DieConditionType conditionType, BaseEnemyConfig config, EnemyViewConfig viewConfig)
 	{
 		Enemy spawnedEnemy = CreateEnemy(config);
+
+		spawnedEnemy.GetComponentInChildren<EnemyView>().SetSprite(viewConfig.View);
 		
 		Func<bool> condition = GetConditionBy(conditionType, spawnedEnemy);
 		
@@ -93,9 +95,9 @@ public class EnemySpawner : MonoBehaviour
 		Timer timer = _timerService.CreateTimer(_aliveTime);
 		
 		TimerWatcher watcher = new TimerWatcher(timer);
-		_timerService.StartTimer(timer);
+		timer.StartTimer();
 		
-		enemy.Destroyed += (enemy) => _timerService.StopTimer(timer);
+		enemy.Destroyed += (enemy) => timer.StopTimer();
 		
 		return watcher.IsTimerFinished;
 	}

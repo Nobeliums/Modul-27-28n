@@ -13,19 +13,6 @@ public class TimerService : MonoBehaviour
 		_timers = new List<Timer>();
 	}
 
-	public void StartTimer(Timer timer)
-	{
-		if (timer.IsRunning)
-			return;
-
-		timer.StartTimer();
-	}
-
-	public void StopTimer(Timer timer)
-	{
-		timer.StopTimer();
-	}
-
 	public void StartAllTimers()
 	{
 		foreach (Timer timer in _timers)

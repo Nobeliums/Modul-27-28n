@@ -68,19 +68,25 @@ public class EventsExample : MonoBehaviour
 		if (Input.GetKeyDown(SpawnDragonEnemyWithRandomConfigKey))
 		{
 			BaseEnemyConfig config = _configService.GetRandomDragonEnemyConfig();
-			_enemySpawner.SpawnEnemyWith(DieConditionType.Dead, config);
+			EnemyViewConfig viewConfig = _configService.GetEnemyViewConfigFor(config);
+
+			_enemySpawner.SpawnEnemyWith(DieConditionType.Dead, config, viewConfig);
 		}
 
 		if (Input.GetKeyDown(SpawnOrkEnemyWithRandomConfigKey))
 		{
 			BaseEnemyConfig config = _configService.GetRandomOrkEnemyConfig();
-			_enemySpawner.SpawnEnemyWith(DieConditionType.Dead, config);
+			EnemyViewConfig viewConfig = _configService.GetEnemyViewConfigFor(config);
+
+			_enemySpawner.SpawnEnemyWith(DieConditionType.Dead, config, viewConfig);
 		}
 
 		if (Input.GetKeyDown(SpawnElfEnemyWithRandomConfigKey))
 		{
 			BaseEnemyConfig config = _configService.GetRandomElfEnemyConfig();
-			_enemySpawner.SpawnEnemyWith(DieConditionType.Dead,  config);
+			EnemyViewConfig viewConfig = _configService.GetEnemyViewConfigFor(config);
+
+			_enemySpawner.SpawnEnemyWith(DieConditionType.Dead,  config, viewConfig);
 		}
 
 	}
